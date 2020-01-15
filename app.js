@@ -1,3 +1,4 @@
+//Book class: For Represent Book
 class Book{
     constructor(title, author, isbn){
         this.title = title;
@@ -5,6 +6,7 @@ class Book{
         this.isbn = isbn;
     }
 }
+//UI Class: For UI Design
 class UI{
     static displayBooks(){
         const StoredBooks = Store.getBooks();
@@ -25,7 +27,6 @@ class UI{
         `;
         list.appendChild(row);
     }
-
     static showAlert(message, className){
         const div = document.createElement('div');
         div.className = `alert alert-${className}`;
@@ -48,6 +49,7 @@ class UI{
     }
 
 }
+//Store Class: For Storing Book in local store
 class Store{
     static getBooks(){
         let books;
@@ -77,10 +79,11 @@ class Store{
 
 
 }
+//Events: Display events
 document.addEventListener('DOMContentLoaded', UI.displayBooks);
 
 
-
+//Events: Add book in book_list
 document.querySelector('#book-form').addEventListener('submit', (e)=> {
     e.preventDefault();
     const title = document.querySelector('#title').value;
@@ -100,7 +103,7 @@ document.querySelector('#book-form').addEventListener('submit', (e)=> {
 
 
 });
-
+//Events: Remove Book From Store
 document.querySelector('#book-list').addEventListener('click', (e)=>{
     UI.deleteBook(e.target);
     Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
